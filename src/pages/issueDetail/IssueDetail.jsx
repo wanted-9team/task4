@@ -1,5 +1,71 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { getIssueDetail } from 'api'
+import styled from 'styled-components'
+import { toLocaleDateFunc } from 'util/transDate'
 
 export default function IssueDetail() {
-  return <div>IssueDetail</div>
+  const [issueDetail, setIssueDetail] = useState({})
+  const params = useParams()
+  const fetch = async () => {
+    const res = await getIssueDetail(params.id)
+    setIssueDetail(res.data)
+  }
+  useEffect(() => {
+    fetch()
+  }, [])
+  return (
+    <DetailContainer>
+      <DetailHeader>
+        <DetailAvatar
+          src={issueDetail.assignee?.avatar_url || issueDetail.user?.avatar_url}
+          alt={issueDetail.user?.login}
+        />
+        <TitleWrapper>
+          <Title>
+            #{issueDetail.number} <TitleStrong>{issueDetail.title}</TitleStrong>
+          </Title>
+          <InfoText>작성자: {issueDetail.user?.login}</InfoText>
+          <InfoText>작성일: {toLocaleDateFunc(issueDetail.created_at)}</InfoText>
+        </TitleWrapper>
+        <Comment>코멘트: {issueDetail.comments}</Comment>
+      </DetailHeader>
+      {/* <IssueBody dangerouslySetInnerHTML={{ __html: issueDetail.body }}></IssueBody> */}
+      <IssueBody>{issueDetail.body}</IssueBody>
+    </DetailContainer>
+  )
 }
+const DetailContainer = styled.div``
+
+const DetailHeader = styled.header`
+  ${({ theme }) => theme.flex('', 'space-between', 'center')}
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
+`
+
+const DetailAvatar = styled.img`
+  width: 40px;
+`
+const TitleWrapper = styled.div`
+  flex: 1;
+  padding-left: 10px;
+`
+
+const Title = styled.h1`
+  ${({ theme }) => theme.headerFont}
+  padding: 15px 0;
+`
+
+const TitleStrong = styled.strong`
+  font-weight: 600;
+  color: #000;
+`
+
+const InfoText = styled.h3`
+  display: inline-block;
+  ${({ theme }) => theme.smallFont};
+  color: ${({ theme }) => theme.border};
+  margin-right: 10px;
+`
+const Comment = styled.h3``
+const IssueBody = styled.article``
