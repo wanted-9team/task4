@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import Header from 'components/Header'
 import Issue from 'pages/home/Issue'
 import IssueDetail from 'pages/issueDetail/IssueDetail'
 
