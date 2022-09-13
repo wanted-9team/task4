@@ -1,16 +1,18 @@
 import React from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
-import Header from 'components/Header'
+
 import Issue from 'pages/home/Issue'
 import IssueDetail from 'pages/issueDetail/IssueDetail'
+import Layout from 'components/Layout'
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path="/" element={<Issue />} />
-        <Route path="/:id" element={<IssueDetail />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Issue />} />
+          <Route path="/:id" element={<IssueDetail />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
