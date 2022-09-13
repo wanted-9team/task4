@@ -22,13 +22,17 @@ const theme = {
   `,
 
   headerFont: css`
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
   `,
 
   normalFont: css`
     font-size: 16px;
     font-weight: 400;
+  `,
+
+  smallFont: css`
+    font-size: 14px;
   `,
 }
 
