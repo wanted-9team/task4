@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getIssueDetail } from 'api'
 import styled from 'styled-components'
 import { toLocaleDateFunc } from 'util/transDate'
+import { useIssues } from 'context/GithubContext'
 
 export default function IssueDetail() {
   const [issueDetail, setIssueDetail] = useState({})
   const params = useParams()
+  const { getIssueDetail } = useIssues()
+
   const fetch = async () => {
     const res = await getIssueDetail(params.id)
     setIssueDetail(res.data)
   }
+
   useEffect(() => {
     fetch()
   }, [])
+
   return (
     <DetailContainer>
       <DetailHeader>
@@ -30,7 +34,6 @@ export default function IssueDetail() {
         </TitleWrapper>
         <Comment>코멘트: {issueDetail.comments}</Comment>
       </DetailHeader>
-      {/* <IssueBody dangerouslySetInnerHTML={{ __html: issueDetail.body }}></IssueBody> */}
       <IssueBody>{issueDetail.body}</IssueBody>
     </DetailContainer>
   )
