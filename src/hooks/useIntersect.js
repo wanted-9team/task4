@@ -1,32 +1,28 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
-const defaultOption = {
+const defaultOptions = {
   root: null,
-  threshold: 0.5,
-  rootMargin: '0px',
+  rootMargin: '1px',
+  threshold: '0.5',
 }
 
-const useIntersect = (onIntersect, option) => {
-  const [ref, setRef] = useState(null)
-  const checkIntersect = useCallback(([entry], observer) => {
-    if (entry.isIntersecting) {
-      onIntersect(entry, observer)
-    }
-  }, [])
+export const useIntersect = (onIntersect, options = defaultOptions) => {
+  const ref = useRef(null)
+  const callback = useCallback(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) onIntersect(entry, observer)
+      })
+    },
+    [onIntersect],
+  )
 
   useEffect(() => {
-    let observer
-    if (ref) {
-      observer = new IntersectionObserver(checkIntersect, {
-        ...defaultOption,
-        ...option,
-      })
-      observer.observe(ref)
-    }
-    return () => observer && observer.disconnect()
-  }, [ref, option.root, option.threshold, option.rootMargin, checkIntersect])
+    if (!ref.current) return
+    const observer = new IntersectionObserver(callback, options)
+    observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [ref, options, callback])
 
-  return [ref, setRef]
+  return ref
 }
-
-export default useIntersect
