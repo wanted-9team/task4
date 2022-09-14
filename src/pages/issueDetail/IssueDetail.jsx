@@ -5,6 +5,8 @@ import { toLocaleDateFunc } from 'util/transDate'
 import { useIssues } from 'context/GithubContext'
 import Loading from 'components/Loading'
 import ReactMarkdown from 'react-markdown'
+import defaultImg from 'assets/defaultProfile.jpeg'
+
 export default function IssueDetail() {
   const [issueDetail, setIssueDetail] = useState({})
   const params = useParams()
@@ -34,7 +36,7 @@ export default function IssueDetail() {
         <>
           <DetailHeader>
             <DetailAvatar
-              src={issueDetail.assignee?.avatar_url || issueDetail.user?.avatar_url}
+              src={issueDetail.user?.avatar_url || defaultImg}
               alt={issueDetail.user?.login}
             />
             <TitleWrapper>
