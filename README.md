@@ -16,7 +16,7 @@
 
 ## 배포 URL
 
-- 작성 예정
+[👉 프로젝트 배포 링크](http://preonboarding-task4.s3-website.ap-northeast-2.amazonaws.com/)
 
 ## 실행 방법
 
@@ -154,7 +154,6 @@ $ npm start
   - 클래스나, 태그 중복에 의한 스타일 에러를 막아주기 때문에 일반 css나 scss보다 유용합니다.
   - 기본적으로 scss와 비슷한 문법으로 사용법이 어렵지 않습니다.
   - css-in-js 라이브러리중 가장 널리 쓰이며, 참고할 수 있는 자료가 많습니다.
-
 
 <details>
 <summary style="font-size:17px">폴더 구조</summary>
