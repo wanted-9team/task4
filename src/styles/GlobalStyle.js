@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     cursor: pointer;
   }
+
   pre {
     background-color:#f5f5f5;
     padding:20px;
@@ -29,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
   }
   img {
     max-width:100%;
+
   }
 `
 
