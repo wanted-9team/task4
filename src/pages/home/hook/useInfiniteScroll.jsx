@@ -3,11 +3,10 @@ import { useIssues } from 'context/GithubContext'
 
 const useInfiniteScroll = () => {
   const [issues, setIssues] = useState([])
-  const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(false)
   const [page, setPage] = useState(1)
   const target = useRef(null)
-  const { getIssueList } = useIssues()
+  const { getIssueList, loading, setLoading } = useIssues()
 
   const fetch = useCallback(async () => {
     try {
@@ -24,7 +23,7 @@ const useInfiniteScroll = () => {
     } finally {
       setLoading(false)
     }
-  }, [getIssueList, page])
+  }, [getIssueList, page, setLoading])
 
   useEffect(() => {
     fetch()

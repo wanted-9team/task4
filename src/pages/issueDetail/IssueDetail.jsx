@@ -3,15 +3,23 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { toLocaleDateFunc } from 'util/transDate'
 import { useIssues } from 'context/GithubContext'
-
+import Loading from 'components/Loading'
+import ReactMarkdown from 'react-markdown'
 export default function IssueDetail() {
   const [issueDetail, setIssueDetail] = useState({})
   const params = useParams()
-  const { getIssueDetail } = useIssues()
+  const { getIssueDetail, loading, setLoading } = useIssues()
 
   const fetch = async () => {
-    const res = await getIssueDetail(params.id)
-    setIssueDetail(res.data)
+    try {
+      setLoading(true)
+      const res = await getIssueDetail(params.id)
+      setIssueDetail(res.data)
+    } catch (e) {
+      throw Error(e)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -20,21 +28,27 @@ export default function IssueDetail() {
 
   return (
     <DetailContainer>
-      <DetailHeader>
-        <DetailAvatar
-          src={issueDetail.assignee?.avatar_url || issueDetail.user?.avatar_url}
-          alt={issueDetail.user?.login}
-        />
-        <TitleWrapper>
-          <Title>
-            #{issueDetail.number} <TitleStrong>{issueDetail.title}</TitleStrong>
-          </Title>
-          <InfoText>작성자: {issueDetail.user?.login}</InfoText>
-          <InfoText>작성일: {toLocaleDateFunc(issueDetail.created_at)}</InfoText>
-        </TitleWrapper>
-        <Comment>코멘트: {issueDetail.comments}</Comment>
-      </DetailHeader>
-      <IssueBody>{issueDetail.body}</IssueBody>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <DetailHeader>
+            <DetailAvatar
+              src={issueDetail.assignee?.avatar_url || issueDetail.user?.avatar_url}
+              alt={issueDetail.user?.login}
+            />
+            <TitleWrapper>
+              <Title>
+                #{issueDetail.number} <TitleStrong>{issueDetail.title}</TitleStrong>
+              </Title>
+              <InfoText>작성자: {issueDetail.user?.login}</InfoText>
+              <InfoText>작성일: {toLocaleDateFunc(issueDetail.created_at)}</InfoText>
+            </TitleWrapper>
+            <Comment>코멘트: {issueDetail.comments}</Comment>
+          </DetailHeader>
+          <ReactMarkdown>{issueDetail.body}</ReactMarkdown>
+        </>
+      )}
     </DetailContainer>
   )
 }
@@ -44,6 +58,7 @@ const DetailHeader = styled.header`
   ${({ theme }) => theme.flex('', 'space-between', 'center')}
   border-bottom: 1px solid #dedede;
   margin-bottom: 20px;
+  padding: 15px 0;
 `
 
 const DetailAvatar = styled.img`

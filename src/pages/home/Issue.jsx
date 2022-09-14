@@ -4,6 +4,7 @@ import useInfiniteScroll from './hook/useInfiniteScroll'
 import { useNavigate } from 'react-router-dom'
 import { toLocaleDateFunc } from 'util/transDate'
 import EmptyResult from 'components/EmptyResult'
+import Loading from 'components/Loading'
 export default function Issue() {
   const { issues, loading, hasMore, lastElRef } = useInfiniteScroll()
   const navigate = useNavigate()
@@ -38,13 +39,7 @@ export default function Issue() {
           </Fragment>
         ))}
       <LastElDiv>
-        {hasMore ? (
-          <div ref={lastElRef}>
-            <h2>로딩중...</h2> 잠시만 기다려주세요
-          </div>
-        ) : (
-          <EmptyResult loading={loading} />
-        )}
+        <div ref={lastElRef}>{loading ? <Loading /> : <EmptyResult hasMore={hasMore} />}</div>
       </LastElDiv>
     </IssueUlEl>
   )

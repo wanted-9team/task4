@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-
-const EmptyResult = ({ loading }) => {
+const EmptyResult = ({ hasMore }) => {
   return (
     <EmptyResultContainer>
-      {!loading && (
+      {!hasMore && (
         <>
           <h2>저런! 😔</h2>
           검색 결과가 없습니다.

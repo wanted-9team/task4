@@ -1,13 +1,16 @@
 import React from 'react'
 import { useIssues } from 'context/GithubContext'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 export default function Header() {
   const { organization, repository } = useIssues()
 
   return (
     <HeaderContainer>
-      {organization} / {repository}
+      <NavLink to="/">
+        {organization} / {repository}
+      </NavLink>
     </HeaderContainer>
   )
 }
