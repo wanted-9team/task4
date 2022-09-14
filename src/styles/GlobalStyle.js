@@ -1,8 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
+  h1,h2,h3,h4,h5 {
+    margin: 0;
+    padding: 0;
+  }
   a {
     text-decoration: none;
     color: inherit;
@@ -22,6 +24,16 @@ const GlobalStyle = createGlobalStyle`
     background: none;
     padding: 0;
     cursor: pointer;
+  }
+
+  pre {
+    background-color:#f5f2f0;
+    padding:20px;
+    overflow-x:scroll
+  }
+  img {
+    max-width:100%;
+
   }
 `
 
