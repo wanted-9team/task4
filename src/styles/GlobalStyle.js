@@ -1,8 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
+  h1,h2,h3,h4,h5 {
+    margin: 0;
+    padding: 0;
+  }
   a {
     text-decoration: none;
     color: inherit;
