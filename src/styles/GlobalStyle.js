@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
+  ${reset}
   a {
     text-decoration: none;
     color: inherit;
@@ -24,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   pre {
-    background-color:#f5f5f5;
+    background-color:#f5f2f0;
     padding:20px;
     overflow-x:scroll
   }
