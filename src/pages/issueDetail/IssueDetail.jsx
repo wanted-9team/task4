@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { toLocaleDateFunc } from 'util/transDate'
 import { useIssues } from 'context/GithubContext'
 import Loading from 'components/Loading'
-import ReactMarkdown from 'react-markdown'
 import defaultImg from 'assets/defaultProfile.jpeg'
 import DetailMarkDown from './components/DetailMarkDown'
 
@@ -89,4 +88,3 @@ const InfoText = styled.h3`
   margin-right: 10px;
 `
 const Comment = styled.h3``
-const IssueBody = styled.article``
