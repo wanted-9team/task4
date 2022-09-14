@@ -155,6 +155,47 @@ $ npm start
   - 기본적으로 scss와 비슷한 문법으로 사용법이 어렵지 않습니다.
   - css-in-js 라이브러리중 가장 널리 쓰이며, 참고할 수 있는 자료가 많습니다.
 
+
+<details>
 <summary style="font-size:17px">폴더 구조</summary>
+
+```
+|   App.js
+|   index.js
+|
++---api
+|       index.js
+|
++---assets
++---components
+|       EmptyResult.jsx
+|       Header.jsx
+|       Layout.jsx
+|       Loading.jsx
+|
++---context
+|       GithubContext.jsx
+|
++---pages
+|   +---home
+|   |   |   Issue.jsx
+|   |   |
+|   |   ---hook
+|   |           useInfiniteScroll.jsx
+|   |
+|   ---issueDetail
+|       |   IssueDetail.jsx
+|       |
+|       ---components
+|               Markdown.jsx
+|               style.js
+|
++---styles
+|       GlobalStyle.js
+|       Theme.js
+|
+---util
+        transDate.js
+```
 
 </details>
