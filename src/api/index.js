@@ -1,5 +1,4 @@
 import axios from 'axios'
-const API_KEY = process.env.REACT_APP_SERVICE_KEY
 const BASE_URL = process.env.REACT_APP_API_URL
 
 const issueApiFunc = (owner, repo) => {
@@ -7,7 +6,6 @@ const issueApiFunc = (owner, repo) => {
     baseURL: `${BASE_URL}/${owner}/${repo}`,
     headers: {
       'Content-type': 'application/json',
-      Authorization: 'Basic ' + API_KEY,
     },
   })
 
