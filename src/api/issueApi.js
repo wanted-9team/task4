@@ -10,9 +10,9 @@ export const fetchRepo = () => {
   return instance.get(`repos/${options.owner}/${options.repository}`)
 }
 
-export const fetchIssueList = ({ page }) => {
+export const fetchIssueList = pageNumber => {
   return instance.get(`repos/${options.owner}/${options.repository}/issues`, {
-    params: { ...options.option, page },
+    params: { ...options.option, page: pageNumber },
   })
 }
 
