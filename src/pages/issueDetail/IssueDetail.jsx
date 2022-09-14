@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { toLocaleDateFunc } from 'util/transDate'
 import { useIssues } from 'context/GithubContext'
 import Loading from 'components/Loading'
-import ReactMarkdown from 'react-markdown'
+import DetailMarkDown from './components/DetailMarkDown'
+
 export default function IssueDetail() {
   const [issueDetail, setIssueDetail] = useState({})
   const params = useParams()
@@ -46,7 +47,7 @@ export default function IssueDetail() {
             </TitleWrapper>
             <Comment>코멘트: {issueDetail.comments}</Comment>
           </DetailHeader>
-          <ReactMarkdown>{issueDetail.body}</ReactMarkdown>
+          <DetailMarkDown issueDetailBody={issueDetail.body} />
         </>
       )}
     </DetailContainer>
@@ -86,4 +87,3 @@ const InfoText = styled.h3`
   margin-right: 10px;
 `
 const Comment = styled.h3``
-const IssueBody = styled.article``
