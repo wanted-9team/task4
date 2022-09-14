@@ -20,5 +20,4 @@ const EmptyResultContainer = styled.div`
   text-align: center;
   padding: 16px 0;
   line-height: 1.3;
-  color: var(--highlight);
 `
