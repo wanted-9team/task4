@@ -23,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     cursor: pointer;
   }
+  img {
+    max-width: 100%;
+  }
 `
 
 export default GlobalStyle
